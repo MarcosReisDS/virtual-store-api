@@ -8,6 +8,9 @@ export class Color {
     id: number;
 
     @Column()
+    productId: number;
+
+    @Column()
     name: string;
 
     @Column()

@@ -8,6 +8,9 @@ export class Size {
     id: number;
 
     @Column()
+    productId: number;
+
+    @Column()
 	size: string
 
     constructor(size_data: SizesDto) {
