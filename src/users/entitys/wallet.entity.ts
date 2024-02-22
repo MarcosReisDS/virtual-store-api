@@ -8,6 +8,9 @@ export class Wallet {
     id: number;
 
     @Column()
+    userId: string;
+
+    @Column()
     number: string;
 
     @Column()
