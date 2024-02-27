@@ -21,7 +21,10 @@ export class Product {
   price: string;
 
   @Column()
-  amount: string;
+  quantity: string;
+
+  @Column()
+  type: string;
 
   constructor(product_data: ProductsDto) {
     this.image = product_data?.image;
@@ -32,7 +35,9 @@ export class Product {
 
     this.price = product_data?.price;
 
-    this.amount = product_data?.amount;
+    this.quantity = product_data?.quantity;
+
+    this.type = product_data?.type;
   }
 
   @ManyToMany(() => Color, { cascade: true })
