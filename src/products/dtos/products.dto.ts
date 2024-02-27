@@ -14,5 +14,8 @@ export class ProductsDto {
     price: string;
   
     @IsNotEmpty()
-    amount: string;
+    quantity: string;
+
+    @IsNotEmpty()
+    type: string;
 }
