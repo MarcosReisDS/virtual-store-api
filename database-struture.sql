@@ -48,7 +48,8 @@ CREATE TABLE `products` (
 	`name` VARCHAR(255) NOT NULL COLLATE 'utf8mb4_0900_ai_ci',
 	`description` VARCHAR(255) NOT NULL COLLATE 'utf8mb4_0900_ai_ci',
 	`price` VARCHAR(255) NOT NULL COLLATE 'utf8mb4_0900_ai_ci',
-	`amount` VARCHAR(255) NOT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`quantity` VARCHAR(255) NOT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`type` VARCHAR(255) NOT NULL COLLATE 'utf8mb4_0900_ai_ci',
 	PRIMARY KEY (`id`) USING BTREE
 )
 COLLATE='utf8mb4_0900_ai_ci'
