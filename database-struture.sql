@@ -42,6 +42,24 @@ COLLATE='utf8mb4_0900_ai_ci'
 ENGINE=InnoDB
 ;
 
+CREATE TABLE `cart` (
+	`id` INT(10) NOT NULL AUTO_INCREMENT,
+	`user_id` INT(10) NULL DEFAULT NULL,
+	`image` VARCHAR(255) NOT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`name` VARCHAR(255) NOT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`price` VARCHAR(255) NOT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`quantity` VARCHAR(255) NOT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`type` VARCHAR(255) NOT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`size` VARCHAR(255) NOT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`color` VARCHAR(255) NOT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	PRIMARY KEY (`id`) USING BTREE,
+	INDEX `user_id` (`user_id`) USING BTREE,
+	CONSTRAINT `cart_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON UPDATE NO ACTION ON DELETE NO ACTION
+)
+COLLATE='utf8mb4_0900_ai_ci'
+ENGINE=InnoDB
+;
+
 CREATE TABLE `products` (
 	`id` INT(10) NOT NULL AUTO_INCREMENT,
 	`image` VARCHAR(255) NOT NULL COLLATE 'utf8mb4_0900_ai_ci',
