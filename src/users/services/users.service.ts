@@ -9,14 +9,23 @@ export class UsersService {
         @InjectRepository(User) private usersRepository: Repository<User>,
     ) { }
 
-    async searchUser(query: { id: number }): Promise<any> {
-        const { id } = query
+    async searchUser(query: { id: number, mail: string, password: string}): Promise<any> {
+        const { id, mail, password } = query
 
         if (id) {
             return await this.usersRepository.findOne({
                 where: {
                     id
                 }
+            })
+        } 
+        
+        if(mail || password) {
+            return await this.usersRepository.findOne({
+              where: {
+                mail,
+                password
+              }
             })
         }
 

@@ -9,10 +9,13 @@ import { WalletsController } from './controllers/wallets.controller';
 import { AddressesController } from './controllers/addresses.controller';
 import { WalletsService } from './services/wallets.service';
 import { AddressesService } from './services/addresses.service';
+import { Cart } from './entitys/cart.entity';
+import { CartController } from './controllers/cart.controller';
+import { CartService } from './services/cart.service';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([User, Wallet, Address])],
-  controllers: [UsersController, WalletsController, AddressesController],
-  providers: [UsersService, WalletsService, AddressesService],
+  imports: [TypeOrmModule.forFeature([User, Wallet, Address, Cart])],
+  controllers: [UsersController, WalletsController, AddressesController, CartController],
+  providers: [UsersService, WalletsService, AddressesService, CartService],
 })
 export class UsersModule { }

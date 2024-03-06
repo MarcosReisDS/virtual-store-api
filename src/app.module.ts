@@ -8,6 +8,7 @@ import { ProductsModule } from './products/products.module';
 import { Product } from './products/entitys/product.entity';
 import { Color } from './products/entitys/color.entity';
 import { Size } from './products/entitys/size.entity';
+import { Cart } from './users/entitys/cart.entity';
 
 @Module({
   imports: [
@@ -21,7 +22,7 @@ import { Size } from './products/entitys/size.entity';
       password: 'dev',
       database: 'virtual_store',
       entities: [
-        User, Address, Wallet,
+        User, Address, Wallet, Cart,
         Product, Color, Size
       ],
       synchronize: true,
