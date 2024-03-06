@@ -11,7 +11,7 @@ export class UsersController {
 
   @Get("/")
   async searchUser(
-    @Query() query: { id: number }
+    @Query() query: { id: number, mail: string, password: string },
   ) {
     return this.usersService.searchUser(query)
   }

@@ -2,6 +2,7 @@ import { Entity, Column, PrimaryGeneratedColumn, ManyToMany, JoinTable } from 't
 import { UsersDto } from '../dtos/users.dto';
 import { Address } from './address.entity';
 import { Wallet } from './wallet.entity';
+import { Cart } from './cart.entity';
 
 @Entity("users")
 export class User {
@@ -42,4 +43,8 @@ export class User {
   @ManyToMany(() => Wallet, { cascade: true })
   @JoinTable()
   wallets: Wallet[];
+
+  @ManyToMany(() => Cart, { cascade: true })
+  @JoinTable()
+  cart: Cart[];
 }
