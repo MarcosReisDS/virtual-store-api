@@ -43,7 +43,7 @@ export class WalletsService {
 
     async updateWallet(wallet_id: number, wallet: Wallet): Promise<Wallet> {
         wallet.id = wallet_id;
-        return await this.usersRepository.save(wallet);
+        return await this.walletsRepository.save(wallet);
     }
 
     async removeWallet(wallet_id: number | null): Promise<any> {
