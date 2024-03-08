@@ -43,7 +43,7 @@ export class CartService {
 
     async updateCart(cart_id: number, cart: Cart): Promise<Cart> {
         cart.id = cart_id;
-        return await this.usersRepository.save(cart);
+        return await this.cartRepository.save(cart);
     }
 
     async removeCart(cart_id: number | null): Promise<any> {

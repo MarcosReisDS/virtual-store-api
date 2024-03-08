@@ -43,7 +43,7 @@ export class AddressesService {
 
     async updateAddress(address_id: number, address: Address): Promise<Address> {
         address.id = address_id;
-        return await this.usersRepository.save(address);
+        return await this.addressesRepository.save(address);
     }
 
     async removeAddress(address_id: number | null): Promise<any> {
