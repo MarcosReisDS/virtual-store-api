@@ -12,10 +12,18 @@ import { AddressesService } from './services/addresses.service';
 import { Cart } from './entitys/cart.entity';
 import { CartController } from './controllers/cart.controller';
 import { CartService } from './services/cart.service';
+import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
+import { APP_GUARD } from '@nestjs/core';
 
 @Module({
   imports: [TypeOrmModule.forFeature([User, Wallet, Address, Cart])],
   controllers: [UsersController, WalletsController, AddressesController, CartController],
-  providers: [UsersService, WalletsService, AddressesService, CartService],
+  providers: [UsersService, WalletsService, AddressesService, CartService,
+    {
+      provide: APP_GUARD,
+      useClass: JwtAuthGuard
+    }
+  ],
+  exports: [UsersService]
 })
 export class UsersModule { }

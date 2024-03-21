@@ -2,6 +2,9 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { User } from "../entitys/user.entity"
 import { Repository } from 'typeorm';
+import * as bcrypt from 'bcrypt';
+import { EmailExistsException } from '../errors/email-exists.exception';
+
 
 @Injectable()
 export class UsersService {
@@ -9,23 +12,13 @@ export class UsersService {
         @InjectRepository(User) private usersRepository: Repository<User>,
     ) { }
 
-    async searchUser(query: { id: number, mail: string, password: string}): Promise<any> {
-        const { id, mail, password } = query
+    async searchUser(mail: string): Promise<any> {
 
-        if (id) {
+        if (mail) {
             return await this.usersRepository.findOne({
                 where: {
-                    id
+                    mail,
                 }
-            })
-        } 
-        
-        if(mail || password) {
-            return await this.usersRepository.findOne({
-              where: {
-                mail,
-                password
-              }
             })
         }
 
@@ -33,7 +26,28 @@ export class UsersService {
     }
 
     async saveUser(user: User): Promise<User> {
-        return await this.usersRepository.save(user)
+
+        const mailTeste = await this.usersRepository.findOne({
+            where: {
+                mail: user.mail
+            }
+        })
+
+        const data = {
+            ...user,
+            password: await bcrypt.hash(user.password, 10)
+        }
+
+        if (data?.mail == mailTeste?.mail) {
+            throw new EmailExistsException();
+        }
+
+        const createUser = await this.usersRepository.save(data)
+
+        return {
+            ...createUser,
+            password: undefined
+        }
     }
 
     async updateUser(user_id: number, user: User): Promise<User> {
