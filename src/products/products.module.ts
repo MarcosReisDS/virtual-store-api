@@ -9,10 +9,16 @@ import { SizesController } from './controllers/sizes.controller';
 import { ProductsService } from './services/products.service';
 import { ColorsService } from './services/colors.service';
 import { SizesService } from './services/sizes.service';
+import { APP_GUARD } from '@nestjs/core';
+import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
 
 @Module({
   imports: [TypeOrmModule.forFeature([Product, Color, Size])],
   controllers: [ProductsController, ColorsController, SizesController],
-  providers: [ProductsService, ColorsService, SizesService],
+  providers: [
+    ProductsService, 
+    ColorsService, 
+    SizesService,
+  ],
 })
 export class ProductsModule { }
