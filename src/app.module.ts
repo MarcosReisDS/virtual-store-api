@@ -9,11 +9,13 @@ import { Product } from './products/entitys/product.entity';
 import { Color } from './products/entitys/color.entity';
 import { Size } from './products/entitys/size.entity';
 import { Cart } from './users/entitys/cart.entity';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
     UsersModule,
     ProductsModule,
+    AuthModule,
     TypeOrmModule.forRoot({
       type: 'mysql',
       host: 'host.docker.internal',
