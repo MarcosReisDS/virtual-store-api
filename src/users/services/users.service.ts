@@ -42,12 +42,7 @@ export class UsersService {
             throw new EmailExistsException();
         }
 
-        const createUser = await this.usersRepository.save(data)
-
-        return {
-            ...createUser,
-            password: undefined
-        }
+       return await this.usersRepository.save(data)
     }
 
     async updateUser(user_id: number, user: User): Promise<User> {
