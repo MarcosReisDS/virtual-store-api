@@ -2,6 +2,7 @@ import { Body, Controller, Get, Post, Query, Put, Delete, Param } from '@nestjs/
 import { User } from "../entitys/user.entity"
 import { UsersService } from '../services/users.service';
 import { UsersDto } from '../dtos/users.dto';
+import { IsPublic } from 'src/auth/decorators/is-public.decorator';
 
 @Controller({
   path: "users"
@@ -11,11 +12,12 @@ export class UsersController {
 
   @Get("/")
   async searchUser(
-    @Query() query: { id: number, mail: string, password: string },
+    @Query() query: { mail: string }
   ) {
-    return this.usersService.searchUser(query)
+    return this.usersService.searchUser(query.mail)
   }
 
+  @IsPublic()
   @Post("/")
   async saveUser(
     @Body() user_data: UsersDto
