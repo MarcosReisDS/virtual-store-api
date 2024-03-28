@@ -24,6 +24,9 @@ export class User {
   @Column()
   password: string;
 
+  @Column()
+  admin: boolean;
+
   constructor(user_data: UsersDto) {
     this.profile = user_data?.profile;
 
@@ -34,6 +37,8 @@ export class User {
     this.mail = user_data?.mail;
 
     this.password = user_data?.password;
+
+    this.admin = user_data?.admin;
   }
 
   @ManyToMany(() => Address, { cascade: true })
