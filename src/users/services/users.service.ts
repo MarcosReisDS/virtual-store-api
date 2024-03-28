@@ -4,6 +4,7 @@ import { User } from "../entitys/user.entity"
 import { Repository } from 'typeorm';
 import * as bcrypt from 'bcrypt';
 import { EmailExistsException } from '../errors/email-exists.exception';
+import { UserAdminException } from '../errors/user-admin.exception';
 
 
 @Injectable()
@@ -12,7 +13,7 @@ export class UsersService {
         @InjectRepository(User) private usersRepository: Repository<User>,
     ) { }
 
-    async searchUser(mail: string): Promise<any> {
+    async searchUser(mail: string, admin?: boolean): Promise<any> {
 
         if (mail) {
             return await this.usersRepository.findOne({
@@ -21,8 +22,13 @@ export class UsersService {
                 }
             })
         }
+        
+        if (admin == true) {
+            return await this.usersRepository.find()
+        } else {
+            throw new UserAdminException();
+        }
 
-        return await this.usersRepository.find()
     }
 
     async saveUser(user: User): Promise<User> {
@@ -42,7 +48,10 @@ export class UsersService {
             throw new EmailExistsException();
         }
 
-       return await this.usersRepository.save(data)
+        return await this.usersRepository.save({
+            ...data,
+            password: undefined
+        })
     }
 
     async updateUser(user_id: number, user: User): Promise<User> {
