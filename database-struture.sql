@@ -7,6 +7,7 @@ CREATE TABLE `users` (
 	`surname` VARCHAR(255) NOT NULL COLLATE 'utf8mb4_0900_ai_ci',
 	`mail` VARCHAR(255) NOT NULL COLLATE 'utf8mb4_0900_ai_ci',
 	`password` VARCHAR(255) NOT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`admin` BIT NOT NULL COLLATE 'utf8mb4_0900_ai_ci',
 	PRIMARY KEY (`id`) USING BTREE
 )
 COLLATE='utf8mb4_0900_ai_ci'
