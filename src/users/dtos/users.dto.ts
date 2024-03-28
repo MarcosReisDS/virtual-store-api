@@ -20,4 +20,7 @@ export class UsersDto {
       message: 'password too weak',
     })
     password: string;
+
+    @IsNotEmpty()
+    admin: boolean;
 }
