@@ -12,9 +12,9 @@ export class UsersController {
 
   @Get("/")
   async searchUser(
-    @Query() query: { mail: string }
+    @Query() query: { mail: string, admin: boolean }
   ) {
-    return this.usersService.searchUser(query.mail)
+    return this.usersService.searchUser(query.mail, query.admin)
   }
 
   @IsPublic()
